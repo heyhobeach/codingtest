@@ -1,0 +1,17 @@
+array=[1,5,2,6,3,7,4]
+commands=[[2,5,3],[4,4,1],[1,7,3]]
+answer = []
+a=[]
+for i in range (3):
+    start=commands[i][0]
+    start-=1
+    end=commands[i][1]
+    find=commands[i][2]
+    find-=1
+    a=array[start:end]
+    a.sort()
+    print(a)
+    target=a[find]
+    answer.append(target)
+    print(target)
+print(answer)
