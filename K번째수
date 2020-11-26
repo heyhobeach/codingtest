@@ -15,3 +15,26 @@ for i in range (3):
     answer.append(target)
     print(target)
 print(answer)
+
+###############################################
+
+
+
+#제출본 정답 for in 을 이용해 2차원 배열을 좀더 다양하게 이용해야함
+
+def solution(array, commands):
+    answer = []
+    a=[]
+    for command in commands :
+        a=array[command[0]-1:command[1]]
+                
+        a.sort()
+        target=a[command[2]-1]
+        answer.append(target)
+    return answer
+
+
+
+
+
+
