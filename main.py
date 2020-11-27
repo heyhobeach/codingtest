@@ -1,0 +1,20 @@
+n=3
+lost=[1,3]
+reserve=[2]
+answer=0
+
+new_lost=list(set(lost)-set(reserve))
+new_reserve=list(set(reserve)-set(lost))
+for i in new_reserve:
+    if i+1 in new_lost:
+        print(new_lost)
+        new_lost.remove(i+1)#잃어버린경우가있다면 그 리스트의 인자를 제거 remove를 이용해 안의 요소를 찾아서 제거 중복이 없기에 가능
+    elif i-1 in new_lost:
+        print(new_lost)
+        new_lost.remove(i-1)
+answer=n-len(new_lost)
+#print(lost)
+
+
+
+print(answer)
