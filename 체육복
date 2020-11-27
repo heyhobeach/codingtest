@@ -18,3 +18,22 @@ answer=n-len(new_lost)
 
 
 print(answer)
+
+
+
+########################################
+
+
+
+def solution(n, lost, reserve):
+    answer = 0
+    new_lost=list(set(lost)-set(reserve))
+    new_reserve=list(set(reserve)-set(lost))
+    for r in new_reserve:
+        f=r-1
+        b=r+1
+        if f in new_lost:
+            new_lost.remove(f)
+        elif b in new_lost:
+            new_lost.remove(b)
+    return n-len(new_lost)
