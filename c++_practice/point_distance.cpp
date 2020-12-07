@@ -74,15 +74,25 @@ public:
     // 이라고 할 때 임의의 다른 두 점 (x1, y1) 과 (x2, y2) 가 f(x,y)=0 을 기준으로
     // 서로 다른 부분에 있을 조건은 f(x1, y1) * f(x2, y2) <= 0 이면 됩니다.
     void PrintNumMeets() {
+        cout << "교점계산";
         int m;
+        int** cross_list;
+        int line_count = 0;
+        int b = 0;
+        int b2 = 0;
         for (unsigned int i = 0; i < array_num; i++) {
             for (unsigned int j = i + 1; j < array_num; j++) {
                 
                 m= (point_array[j]->get_y() - point_array[i]->get_y() / (point_array[j]->get_x() - point_array[i]->get_x()));
-                
+                b = (point_array[i]->get_y() - point_array[i]->get_x() * m);//직선의 방정식
+                b2= (point_array[j]->get_y() - point_array[j]->get_x() * m);//직선의 방정식
+                if (b * b2 <= 0) {
+                    line_count += 1;
+                }
        
             }
         }
+        cout << "교점수" << line_count;
     }
 };
 
@@ -103,7 +113,9 @@ int main()
     geometry1.AddPoint(p1);
     geometry1.AddPoint(p2);
     geometry1.PrintDistance();
-    
+    geometry1.PrintNumMeets();
+
+
     //delete point_list;
     for (unsigned int i = 0; i < num; i++) {
         delete point_list[i];
