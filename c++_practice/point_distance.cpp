@@ -15,34 +15,45 @@ public:
         y = pos_y;
     }
 
-    Point(const Point & p1):x(p1.x),y(p1.y){}
+    Point(const Point & p1):
+        x(p1.x),
+        y(p1.y){}
 
     //Point(Point &point):x(point.x),y(point.y){}
 
-    int get_x() { return x; }
-    int get_y() { return y; }
+    int get_x() { 
+        return x; 
+    }
+    int get_y() { 
+        return y; 
+    }
 };
 
 class Geometry {
-     // ì  100 ê°œë¥¼ ë³´ê´€í•˜ëŠ” ë°°ì—´.
+    // Á¡ 100 °³¸¦ º¸°üÇÏ´Â ¹è¿­.
     Point* point_array[100];
     int pos_x, pos_y,array_num;
 public:
     Geometry(Point** point_list) {
         for (unsigned int i = 0; i < 3; i++) {
-            point_array[i] =new Point((*point_list[i]).get_x(), (*point_list[i]).get_y());//í¬ì¸íŠ¸ í´ë˜ìŠ¤ì— ìˆëŠ” get_xì— ì ‘ê·¼í•˜ëŠ”ê±°ê¸°ë•Œë¬¸ì— '->'ì ‘ê·¼í•˜ê±°ë‚˜ (*).ìœ¼ë¡œ ì ‘ê·¼í•´ì•¼í•¨
+            point_array[i] =new Point((*point_list[i]).get_x(), (*point_list[i]).get_y());//Æ÷ÀÎÆ® Å¬·¡½º¿¡ ÀÖ´Â get_x¿¡ Á¢±ÙÇÏ´Â°Å±â¶§¹®¿¡ '->'Á¢±ÙÇÏ°Å³ª (*).À¸·Î Á¢±ÙÇØ¾ßÇÔ
             array_num = i;
         }
     }
     Geometry() :array_num(0) {};
 
-    void AddPoint(const Point& p1) {/constë¡œ í´ë˜ìŠ¤ ê°ì²´ ì°¸ì¡°ì‹œ ë³µì‚¬ ìƒì„±ì ì‚¬ìš©ë¶ˆê°€ ì½ê¸° ì „ìš©ì´ë¼ëŠ” ëœ» const Point& point ì½ê¸°ë§Œ í•´ë¼
+    void AddPoint(const Point& p1) {//const·Î Å¬·¡½º °´Ã¼ ÂüÁ¶½Ã º¹»ç »ı¼ºÀÚ »ç¿ëºÒ°¡ ÀĞ±â Àü¿ëÀÌ¶ó´Â ¶æ const Point& point ÀĞ±â¸¸ ÇØ¶ó
             array_num++;
-            point_array[array_num] = new Point(p1);// ìƒì„±ìê°€ ì§€ê¸ˆ ê°’ì´ ë³€í• ìˆ˜ë„ ìˆì–´ì„œ ì˜¤ë¥˜ë‚˜ëŠ”ê±°ê°™ìŒ
+            point_array[array_num] = new Point(p1);// »ı¼ºÀÚ°¡ Áö±İ °ªÀÌ º¯ÇÒ¼öµµ ÀÖ¾î¼­ ¿À·ù³ª´Â°Å°°À½
    
     }
+    ~Geometry() {
+        for (unsigned int i = 0; i < array_num; i++) {
+            delete point_array[i];
+        }
+    }
 
-   // ëª¨ë“  ì ë“¤ ê°„ì˜ ê±°ë¦¬ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ ì…ë‹ˆë‹¤.
+    // ¸ğµç Á¡µé °£ÀÇ °Å¸®¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö ÀÔ´Ï´Ù.
     void PrintDistance() {
         for (unsigned int i = 0; i <array_num; i++) {
             for (unsigned int j = i+1; j < array_num; j++) {
@@ -58,11 +69,21 @@ public:
         }
     }
 
-   // ëª¨ë“  ì ë“¤ì„ ì‡ëŠ” ì§ì„ ë“¤ ê°„ì˜ êµì ì˜ ìˆ˜ë¥¼ ì¶œë ¥í•´ì£¼ëŠ” í•¨ìˆ˜ ì…ë‹ˆë‹¤.
-    // ì°¸ê³ ì ìœ¼ë¡œ ì„ì˜ì˜ ë‘ ì ì„ ì‡ëŠ” ì§ì„ ì˜ ë°©ì •ì‹ì„ f(x,y) = ax+by+c = 0
-    // ì´ë¼ê³  í•  ë•Œ ì„ì˜ì˜ ë‹¤ë¥¸ ë‘ ì  (x1, y1) ê³¼ (x2, y2) ê°€ f(x,y)=0 ì„ ê¸°ì¤€ìœ¼ë¡œ
-    // ì„œë¡œ ë‹¤ë¥¸ ë¶€ë¶„ì— ìˆì„ ì¡°ê±´ì€ f(x1, y1) * f(x2, y2) <= 0 ì´ë©´ ë©ë‹ˆë‹¤.
-    void PrintNumMeets();
+    // ¸ğµç Á¡µéÀ» ÀÕ´Â Á÷¼±µé °£ÀÇ ±³Á¡ÀÇ ¼ö¸¦ Ãâ·ÂÇØÁÖ´Â ÇÔ¼ö ÀÔ´Ï´Ù.
+    // Âü°íÀûÀ¸·Î ÀÓÀÇÀÇ µÎ Á¡À» ÀÕ´Â Á÷¼±ÀÇ ¹æÁ¤½ÄÀ» f(x,y) = ax+by+c = 0
+    // ÀÌ¶ó°í ÇÒ ¶§ ÀÓÀÇÀÇ ´Ù¸¥ µÎ Á¡ (x1, y1) °ú (x2, y2) °¡ f(x,y)=0 À» ±âÁØÀ¸·Î
+    // ¼­·Î ´Ù¸¥ ºÎºĞ¿¡ ÀÖÀ» Á¶°ÇÀº f(x1, y1) * f(x2, y2) <= 0 ÀÌ¸é µË´Ï´Ù.
+    void PrintNumMeets() {
+        int m;
+        for (unsigned int i = 0; i < array_num; i++) {
+            for (unsigned int j = i + 1; j < array_num; j++) {
+                
+                m= (point_array[j]->get_y() - point_array[i]->get_y() / (point_array[j]->get_x() - point_array[i]->get_x()));
+                
+       
+            }
+        }
+    }
 };
 
 int main()
@@ -73,7 +94,7 @@ int main()
     Point** point_list;
     point_list = new Point * [3];
     for (unsigned int i = 0; i < num; i++) {
-        cout << "ë©”ì¸ ì¢Œí‘œ ì…ë ¥";
+        cout << "¸ŞÀÎ ÁÂÇ¥ ÀÔ·Â";
         cin >> a >> b;
         point_list[i] = new Point(a, b);
         cout << point_list[i] << endl;
@@ -83,6 +104,10 @@ int main()
     geometry1.AddPoint(p2);
     geometry1.PrintDistance();
     
+    //delete point_list;
+    for (unsigned int i = 0; i < num; i++) {
+        delete point_list[i];
+    }delete point_list;
 
     return 0;
 }
