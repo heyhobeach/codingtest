@@ -1,0 +1,6 @@
+case1=["sun","Bed","Car"]
+
+a={j: i for i,j in enumerate(case1)}#enumerate로 i,j생성후 for문으로 딕셔너리 생성
+print(a)
+print(a["sun"])#이름으로 접근
+####################################
