@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+
+class A {
+	int a;
+public:
+	A(int x) :a(x) { cout << "x:"<<x << endl; }
+	A(const A& c) :a(c.a) {//이런식으로는 호출
+		cout<<"A의 복사 생성자" << "c.a:" << c.a << endl;
+	}
+};
+
+class B {
+	int b;
+public:
+	B() {}
+	B(int x) :b(x) { cout << "b" << b << endl; }
+	B(const B& c) :b(c.b) { cout << "B의 복사생성자 호출" << endl; }
+	A get_A() {
+		A temp(b);//A에 10을넣었음 이미
+		return temp;
+	}
+	/*B test() {//test 하고 복사생성자 까지호출 return obj로 인해 복사생성자에 obj를담아서 호출
+		B obj;
+		cout << "test" << endl;
+		return obj;
+	}*/
+	B& test() {//test 만호출
+		//B obj;
+		cout << "test" << endl;
+		return *this;//반환한게 참조형
+	}
+	void set_b(int a) {
+		b = a;
+	}
+	int get_b() {
+		return b;
+	}
+};
+
+int main(void) {
+	//A a(10);
+	//A {a};이거는 호출할수있음
+	//A(a);//이거는 에러뜸 모호하다는거같음
+	B b(10);
+	//b.get_A();
+	//b.test();
+	b.set_b(10);
+	cout <<"현재 b로 설정중"<< b.get_b() << endl;
+	B& c = b.test();
+	c.set_b(5);
+	cout << "현재 c 참조후 설정중" <<c.get_b() << endl;
+	//b.test(10);
+	return 0;
+}
+
+
