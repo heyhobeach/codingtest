@@ -55,7 +55,7 @@ def solution(n, m):#내답안
 
 
 ################################
-def solution(n, m):#다른사랍답
+def solution(n, m):#다른사랍답 
     gcd = lambda a,b : b if not a%b else gcd(b, a%b)#if not 으로 a%b가 0일때 참 아니면 거짓재귀함수사용으로 a%b==0이 될때까지 반복 즉 최대 공배수찾음
     lcm = lambda a,b : a*b//gcd(a,b)#최소 공약수는 최대공약수의 지수의 반대값이기 때문에 a*b를 곱하고 최대공약수를 나누어줌
     return [gcd(n, m), lcm(n, m)]
