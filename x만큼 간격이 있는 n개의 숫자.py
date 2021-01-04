@@ -12,4 +12,4 @@ answer=[]
 print(answer)'''
 
 
-#print([i*x+x for i in range(n)]) #다른사람풀이 리스트 컴프리헨션을 이용해서 줄일수있음 그냥 x+x가
+#print([i*x+x for i in range(n)]) #다른사람풀이 리스트 컴프리헨션을 이용해서 줄일수있음 i*x로 x의 증가값을 표현하고 +x를 함으로서 처음에 0부터 시작하지않고 x부터 시작할수 있도록함 
