@@ -11,4 +11,4 @@ def solution(n):
 #print(list(map(int,reversed(str(n2)))))# 다른사람 답
     
     #reverse와 reversed의 차이는 reverse는 list에서 제공하는 함수이기때문에 지금 코드상에서 예를들면 answer.reverse로 접근이 가능하고 
-    #reversed는 내장함수로 list에서 제공하는것이 아니기때문에 reversed(n)으로 접근해야함 
+    #reversed는 내장함수로 list에서 제공하는것이 아니기때문에 reversed(n)으로 접근해야함
