@@ -1,4 +1,4 @@
-import operator
+import operator#딕셔너리 람다 키정렬 
 n=6
 stages=[2,1,2,6,2,4,3,3]
 #n=6
