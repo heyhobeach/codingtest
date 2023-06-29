@@ -1,0 +1,22 @@
+//11720문제의 요점은 엄청 큰 수 즉 오버플로우가 발생할경우 그 수를 어떻게 처리 할 것인가 
+//string 혹은 배열에 문자열로 입력받아서 한칸씩 옮기며 해결함
+#include "pch.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+using namespace std;
+int main(void) {
+	int  answer = 0,roof=0;
+	string num="";
+	cin >> roof;
+	cin >> num;
+
+
+	for (int i = 0; i < roof; i++) {
+		answer += num[i] - '0';
+	}
+	cout << answer;
+
+}
