@@ -1,3 +1,20 @@
+vector<string> solution(vector<string> players, vector<string> callings) {
+    vector<string> answer;
+    int pos = 0;
+    string temp = "";
+    for (auto i : callings) {
+        while (true) {
+            if (players[pos] == i) {
+                temp = players[pos - 1];
+                players[pos - 1] = players[pos];
+                players[pos] = temp;
+                pos = 0;
+                break;
+            }pos++;
+        }
+    }
+    return answer = players;
+}
 
 
 int main(void) {
