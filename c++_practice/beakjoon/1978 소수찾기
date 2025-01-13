@@ -1,0 +1,38 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<algorithm>
+#include<math.h>
+using namespace std;
+
+
+
+int main() {
+	ios::sync_with_stdio(false);
+	cout.tie(NULL);
+	cin.tie(NULL);
+
+	int n = 0;
+	int num = 0;
+	int count = 0;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin >> num;
+		if (num <2) { continue; }
+		//num /= 2; //나누기로 수를 줄이려고 했는데 해당 방식이 오답임 절반 나눴을때도 소수인 경우 문제 발생함
+		//num++;
+		bool is_decimal = false;
+		for (int i = 2; i < num; i++) {
+			if (num % i == 0) {
+				is_decimal = true;
+				break;
+			}
+		}
+		if (!is_decimal) {
+			count++;
+		}
+	}
+
+	cout << count << endl;
+}
+
