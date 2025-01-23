@@ -19,7 +19,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		cin >> num;
 		if (num <2) { continue; }
-		//num /= 2; //나누기로 수를 줄이려고 했는데 해당 방식이 오답임 절반 나눴을때도 소수인 경우 문제 발생함
+		//num /= 2; //나누기로 수를 줄이려고 했는데 해당 방식이 오답임 절반 나눴을때도 소수인 경우 문제 발생함, 나눈수를 다시 나눠야함 처음 제공 num/ 2to(num/2)
 		//num++;
 		bool is_decimal = false;
 		for (int i = 2; i < num; i++) {
